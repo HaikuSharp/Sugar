@@ -82,12 +82,12 @@ if (obj.Is<string>(out var s))
 ```csharp
 object maybeNull = GetPossibleNull();
 
-if (maybeNull.IsNil())
+if (maybeNull.IsNil)
 {
     Console.WriteLine("Объект null");
 }
 
-if (maybeNull.IsNotNil())
+if (maybeNull.IsNotNil)
 {
     Console.WriteLine("Объект не null");
 }
