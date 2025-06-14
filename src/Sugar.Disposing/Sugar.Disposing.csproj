@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sugar.Disposing.Abstraction\Sugar.Disposing.Abstraction.csproj" />
+	</ItemGroup>
+
+</Project>
