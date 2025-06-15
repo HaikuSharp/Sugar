@@ -1,7 +1,6 @@
 ﻿using Sugar.Disposing.Abstraction;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sugar.Disposing;
 
@@ -9,11 +8,13 @@ public class DisposeContainer : IDisposeContainer
 {
     private readonly List<IDisposable> m_Disposables;
 
+    public DisposeContainer() => m_Disposables = [];
+
     public DisposeContainer(int capacity) => m_Disposables = new(capacity);
 
-    public DisposeContainer(IEnumerable<IDisposable> disposables) => m_Disposables = disposables.ToList();
+    public DisposeContainer(IEnumerable<IDisposable> disposables) => m_Disposables = [.. disposables];
 
-    public DisposeContainer() => m_Disposables = [];
+    public void Register(IEnumerable<IDisposable> disposables) => m_Disposables.AddRange(disposables);
 
     public void Register(IDisposable disposable) => m_Disposables.Add(disposable);
 
