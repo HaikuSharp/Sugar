@@ -1,28 +1,43 @@
 ﻿namespace Sugar.Object;
 
+/// <summary>
+/// Represents a special object that is considered equal to any other object.
+/// </summary>
 public class AnyObject
 {
+    /// <summary>
+    /// Gets the singleton instance of <see cref="AnyObject"/>.
+    /// </summary>
     public static AnyObject Any
     {
         get => field ??= new();
         private set;
     }
 
+    /// <inheritdoc/>
     public override bool Equals(object obj) => true;
 
+    /// <inheritdoc/>
     public override int GetHashCode() => 0;
 
+    /// <inheritdoc/>
     public override string ToString() => "any";
 
-    public static bool operator ==(AnyObject a, AnyObject b) => true;
+    /// <inheritdoc/>
+    public static bool operator ==(AnyObject left, AnyObject right) => true;
 
-    public static bool operator !=(AnyObject a, AnyObject b) => false;
+    /// <inheritdoc/>
+    public static bool operator !=(AnyObject left, AnyObject right) => false;
 
-    public static bool operator ==(AnyObject a, object b) => true;
+    /// <inheritdoc/>
+    public static bool operator ==(AnyObject left, object right) => true;
 
-    public static bool operator !=(AnyObject a, object b) => false;
+    /// <inheritdoc/>
+    public static bool operator !=(AnyObject left, object right) => false;
 
-    public static bool operator ==(object a, AnyObject b) => true;
+    /// <inheritdoc/>
+    public static bool operator ==(object left, AnyObject right) => true;
 
-    public static bool operator !=(object a, AnyObject b) => false;
+    /// <inheritdoc/>
+    public static bool operator !=(object left, AnyObject right) => false;
 }
