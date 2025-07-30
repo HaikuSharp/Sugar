@@ -14,10 +14,35 @@ public class Box<T>(T boxedValue) : BoxBase, IEquatable<T>, IEquatable<Box<T>>
     /// </summary>
     public Box() : this(default) { }
 
-    private T BoxedValue { get; set; } = boxedValue;
+    /// <summary>
+    /// Current boxed value of <typeparamref name="T"/>.
+    /// </summary>
+    public T BoxedValue { get; set; } = boxedValue;
+
+    /// <inheritdoc/>
+    public override object RawBoxedValue => BoxedValue;
 
     /// <inheritdoc/>
     public override Type BoxedType => typeof(T);
+
+    /// <inheritdoc/>
+    public override bool Is<T1>() => BoxedValue is T1;
+
+    /// <inheritdoc/>
+    public override bool Is<T1>(out T1 value)
+    {
+        if(this is T1 boxedValue)
+        {
+            value = boxedValue;
+            return true;
+        }
+
+        value = default;
+        return false;
+    }
+
+    /// <inheritdoc/>
+    public override T1 As<T1>() => BoxedValue is T1 boxedValue ? boxedValue : throw new InvalidCastException();
 
     /// <inheritdoc/>
     public bool Equals(T other) => EqualityComparer<T>.Default.Equals(BoxedValue, other);
